@@ -68,8 +68,9 @@ public class QuoteRepository {
           .subscribeOn(Schedulers.from(networkPool))
       );
     } else {
-      // TODO Invoke PUT.
-    throw new UnsupportedOperationException("Not yet implemented");
+      return  Completable.fromSingle(proxy.put(String.format(OAUTH_HEADER_FORMAT, token), quote, quote.getId())
+          .subscribeOn(Schedulers.from(networkPool))
+      );
     }
   }
 
